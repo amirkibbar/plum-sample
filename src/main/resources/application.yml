@@ -1,0 +1,13 @@
+consul:
+  hostname: localhost
+  httpPort: 8500
+  dnsPort: 8600
+  serviceId: plum-sample-004
+  serviceName: PlumSample
+  tags: plum-sample, plum-sample-004, PlumSample
+
+plum_sample:
+  myProperty: foo
+
+server:
+  port: 8080

@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    }
+}
+
+plugins {
+    id "de.undercouch.download" version "1.2"
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'plum-sample'
+    version = "0.0.4"
+}
+
+repositories {
+    jcenter()
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://dl.bintray.com/amirk/maven" }
+    maven { url "https://bintray.com/artifact/download/orbitz/consul-client" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-security")
+
+    compile("ajk.plum:plum:0.0.4")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

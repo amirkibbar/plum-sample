@@ -15,4 +15,11 @@ public class SampleProperties {
     public void setMyProperty(String myProperty) {
         this.myProperty = myProperty;
     }
+
+    @Override
+    public String toString() {
+        return "SampleProperties{" +
+                "myProperty='" + myProperty + '\'' +
+                '}';
+    }
 }

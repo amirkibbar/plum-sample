@@ -2,9 +2,11 @@ buildscript {
     repositories {
         jcenter()
         maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://dl.bintray.com/amirk/maven" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+        classpath("ajk.gradle.consul:gradle-consul-plugin:0.1.0")
     }
 }
 
@@ -14,13 +16,15 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'ajk.gradle.consul'
 
 jar {
     baseName = 'plum-sample'
-    version = "0.0.4"
+    version = "0.0.5"
 }
 
 repositories {
+    mavenLocal()
     jcenter()
     maven { url "http://repo.spring.io/milestone" }
     maven { url "http://dl.bintray.com/amirk/maven" }
@@ -32,7 +36,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-security")
 
-    compile("ajk.plum:plum:0.0.4")
+    compile("ajk.plum:plum:0.0.5")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
@@ -41,4 +45,19 @@ run {
     systemProperties = [
             "spring.profiles.active": "consul"
     ]
+}
+
+consul {
+    httpPort = 8501
+    dnsPort = 8601
+}
+
+test {
+    doFirst {
+        startConsul {}
+    }
+
+    doLast {
+        stopConsul {}
+    }
 }

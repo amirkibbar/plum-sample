@@ -1,7 +1,7 @@
 consul:
   hostname: localhost
-  httpPort: 8500
-  dnsPort: 8600
+  httpPort: 8501
+  dnsPort: 8601
   serviceId: plum-sample-004
   serviceName: PlumSample
   tags: plum-sample, plum-sample-004, PlumSample

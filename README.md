@@ -1,5 +1,6 @@
 # plum-sample
-a sample project that uses the [plum library](https://github.com/amirkibbar/plum)
+a sample project that uses the [plum library](https://github.com/amirkibbar/plum) which integrates a spring-boot
+application with [Consul](https://consul.io).
 
 # Running the sample
 

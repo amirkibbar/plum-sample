@@ -3,14 +3,15 @@ a sample project that uses the [plum library](https://github.com/amirkibbar/plum
 
 # Running the sample
 
-Start Consul on the localhost using http port 8500 and DNS port 8600, then:
-
 ```
 
-    $ gradlew run
+    $ gradlew startConsul run
 ```
 
-Access the Consul UI at http://localhost:8500/ui and expect to see the PlumSample service registered:
+No need to install Consul on your box - the [gradle-consul-plugin](https://github.com/amirkibbar/red-apple) does that 
+for you.
+
+Access the Consul UI at [http://localhost:8501/ui](http://localhost:8501/ui) and expect to see the PlumSample service registered:
 
 ![PlumSample service in Consul](https://raw.githubusercontent.com/amirkibbar/plum-sample/master/src/site/resources/registered-service.png)
 

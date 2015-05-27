@@ -1,6 +1,6 @@
 package ajk.plumsample;
 
-import ajk.consul4spring.DnsResolver;
+import ajk.consul4spring.CatalogResolver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 @WebIntegrationTest(randomPort = true, value = {"spring.profiles.active:consul"})
 public class SampleTest {
     @Autowired
-    private DnsResolver dnsResolver;
+    private CatalogResolver catalogResolver;
 
     @Value("${consul.dnsPort}")
     private int dnsPort;
@@ -28,8 +28,7 @@ public class SampleTest {
         // sleep for 11 seconds so that the heartbeat will beat at least once
         sleep(11000);
 
-        // the local port will be 0 because it's set automatically by the test
-        String resolution = dnsResolver.resolveServiceByName("localhost", dnsPort, "plumsample.service.local.consul");
-        assertThat(resolution, is("127.0.0.1:0"));
+        String serviceResolution = catalogResolver.resolveByNameAsClusterDefinition("plumsample");
+        assertThat(serviceResolution, is("127.0.0.1:8080"));
     }
 }

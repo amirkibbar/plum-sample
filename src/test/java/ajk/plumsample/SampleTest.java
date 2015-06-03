@@ -1,6 +1,7 @@
 package ajk.plumsample;
 
 import ajk.consul4spring.CatalogResolver;
+import ajk.consul4spring.DnsResolver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,18 @@ public class SampleTest {
     @Autowired
     private CatalogResolver catalogResolver;
 
+    @Autowired
+    private DnsResolver dnsResolver;
+
     @Value("${consul.dnsPort}")
     private int dnsPort;
 
     @Test
     public void resolveService() throws InterruptedException {
-        // sleep for 11 seconds so that the heartbeat will beat at least once
-        sleep(11000);
+        // sleep for 6 seconds so that the heartbeat will beat at least once
+        sleep(6);
 
         String serviceResolution = catalogResolver.resolveByNameAsClusterDefinition("plumsample");
-        assertThat(serviceResolution, is("127.0.0.1:8080"));
+        assertThat(serviceResolution, is(dnsResolver.readNonLoopbackLocalAddress() + ":0"));
     }
 }

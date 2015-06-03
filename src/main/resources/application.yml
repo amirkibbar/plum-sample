@@ -5,6 +5,7 @@ consul:
   serviceId: plum-sample-004
   serviceName: PlumSample
   tags: plum-sample, plum-sample-004, PlumSample
+  heartbeatRate: 5
 
 plum_sample:
   myProperty: foo
